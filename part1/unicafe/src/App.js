@@ -13,13 +13,38 @@ const Statistics = (props) => {
   return (
     <div>
       <h1>statistics</h1>
-      <p>good {props.good}</p>
-      <p>neutral {props.neutral}</p>
-      <p>bad {props.bad}</p>
-      <p>all {props.good + props.neutral + props.bad}</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>good</td>
+            <td>{props.good}</td>
+          </tr>
+          <tr>
+            <td>neutral</td>
+            <td>{props.neutral}</td>
+          </tr>
+          <tr>
+            <td>bad</td>
+            <td>{props.bad}</td>
+          </tr>
+          <tr>
+            <td>all</td>
+            <td>{props.good + props.neutral + props.bad}</td>
+          </tr>
+        </tbody>
+      </table>
       <p>average {(props.good + props.neutral + props.bad) / 3}</p>
-      <p>positive {(props.good / (props.good + props.neutral + props.bad)) * 100} %</p>
+      <p>
+        positive{" "}
+        {(props.good / (props.good + props.neutral + props.bad)) * 100} %
+      </p>
     </div>
+  )
+}
+
+const Button = (props) => {
+  return (
+    <button onClick={props.onClick}>{props.text}</button>
   )
 }
 
@@ -31,9 +56,9 @@ const App = () => {
   return (
     <div>
       <h1>give feedback</h1>
-      <button onClick={() => setGood(good + 1)}>good</button>
-      <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
-      <button onClick={() => setBad(bad + 1)}>bad</button>
+      <Button onClick={() => setGood(good + 1)} text="good" />
+      <Button onClick={() => setNeutral(neutral + 1)} text="neutral" />
+      <Button onClick={() => setBad(bad + 1)} text="bad" />
 
       <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
